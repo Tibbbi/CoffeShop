@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { HeaderComponent } from './header.component';
+import { HomeComponent } from './home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [HeaderComponent, HomeComponent],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'my-first-app';
+  selectedCoffee = signal('');
+
+  updateSelectedCoffee(name: string) {
+    this.selectedCoffee.set(name);
+  }
 }
